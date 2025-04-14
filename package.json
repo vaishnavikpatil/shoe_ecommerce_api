@@ -2,14 +2,15 @@
   "name": "shoe_ecommerce_api",
   "version": "1.0.0",
   "description": "",
-  "main": "api/index.js",          
-  "scripts": {},
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
-    "mongoose": "^8.13.2",
-    "serverless-http": "^3.2.0"
+    "mongoose": "^8.13.2"
   }
 }
