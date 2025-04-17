@@ -12,6 +12,10 @@ const authRoutes = require('./routes/authRoutes')
 const productRoutes = require('./routes/productRoutes')
 const orderRoutes = require('./routes/orderRoutes')
 
+app.get('/', (req, res) => {
+  res.send('Hello !')
+})
+
 app.use('/api/auth', authRoutes)
 app.use('/api/products', productRoutes)
 app.use('/api/orders', orderRoutes)
