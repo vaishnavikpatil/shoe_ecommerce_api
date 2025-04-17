@@ -1,12 +1,21 @@
 const express = require('express')
 const router = express.Router()
-const { register, login, forgotPassword } = require('../controllers/authController')
+const {
+  register,
+  login,
+  forgotPassword,
+  getUser,
+  updateProfile
+} = require('../controllers/authController')
 
-router.get('/', (req, res) => {
-    res.send('MY APP');
-  });
+const verifyToken = require('../middleware/verifyToken')
+
+
+// Auth routes
 router.post('/register', register)
 router.post('/login', login)
 router.post('/forgot-password', forgotPassword)
+router.get('/profile', verifyToken, getUser)
+router.put('/update_profile', verifyToken, updateProfile)
 
 module.exports = router
