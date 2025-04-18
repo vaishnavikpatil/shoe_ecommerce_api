@@ -1,34 +1,22 @@
 const express = require('express')
-// const dotenv = require('dotenv')
-// const connectDB = require('./config/db')
+const dotenv = require('dotenv')
+const connectDB = require('./config/db')
 
 dotenv.config()
+connectDB()
 
-// Initialize app
 const app = express()
 app.use(express.json())
 
-// Connect to database (make sure this handles errors properly)
-// For Vercel, you should use connection pooling or caching
-// connectDB()
+const authRoutes = require('./routes/authRoutes')
+const productRoutes = require('./routes/productRoutes')
+const orderRoutes = require('./routes/orderRoutes')
 
-// // Routes
-// const authRoutes = require('./routes/authRoutes')
-// const productRoutes = require('./routes/productRoutes')
-// const orderRoutes = require('./routes/orderRoutes')
+app.use('/api/auth', authRoutes)
+app.use('/api/products', productRoutes)
+app.use('/api/orders', orderRoutes)
 
-app.get('/api/test', (req, res) => {
-  res.json({ message: 'API is working!' });
-});
-
-// app.use('/api/auth', authRoutes)
-// app.use('/api/products', productRoutes)
-// app.use('/api/orders', orderRoutes)
-
-
-// app.listen(process.env.PORT, () => {
-//   console.log(`Server running on port ${process.env.PORT}`)
-// })
-
-// Export the Express app
-module.exports = app
+const PORT = process.env.PORT || 3000
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
+})
